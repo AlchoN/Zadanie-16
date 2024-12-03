@@ -2,7 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.dto.Message;
 import com.example.demo.dto.Person;
-import com.example.demo.Service.PersonService;
+import com.example.demo.Service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    private PersonService personService;
+    private ProjectService personService;
 
     @GetMapping("/person")
     public List<Person> getAllPersons() {

@@ -1,16 +1,14 @@
 package com.example.demo.dto;
 
 import java.util.List;
-
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "persons") // Необязательно, если имя таблицы совпадает с именем класса
+@Table(name = "persons")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Или другая стратегия генерации ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "firstname")
@@ -26,7 +24,7 @@ public class Person {
     private String birthday;
 
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true) // Связь один-ко-многим с Message
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Message> messages;
 
     public int getId() {

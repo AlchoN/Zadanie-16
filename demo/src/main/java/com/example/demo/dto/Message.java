@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "messages") // Необязательно, если имя таблицы совпадает с именем класса
+@Table(name = "messages")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Или другая стратегия генерации ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column(name = "title")
@@ -21,7 +21,7 @@ public class Message {
     private LocalDateTime time;
 
     @ManyToOne
-    @JoinColumn(name = "person_id") // Указывает на внешний ключ в таблице messages
+    @JoinColumn(name = "person_id")
     private Person person;
     public int getId() {
         return id;

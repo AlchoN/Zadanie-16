@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonService {
+public class ProjectService {
 
     @Autowired
     private PersonRepository personRepository;
@@ -36,7 +36,6 @@ public class PersonService {
     public Person updatePerson(int id, Person person) {
         Optional<Person> existingPerson = personRepository.findById(id);
         if (existingPerson.isPresent()) {
-            // ... Update logic ... (needs to handle updating messages list properly)
             return personRepository.save(person);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -51,7 +50,7 @@ public class PersonService {
     public List<Message> getMessagesByPersonId(int personId) {
         Optional<Person> person = personRepository.findById(personId);
         if (person.isPresent()) {
-            return person.get().messages; // Assuming Person object holds the message list
+            return person.get().messages;
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -72,9 +71,9 @@ public class PersonService {
     public Message addMessageToPerson(int personId, Message message) {
         Optional<Person> person = personRepository.findById(personId);
         if (person.isPresent()) {
-            message.id = messageRepository.findAll().stream().mapToInt(msg -> msg.id).max().orElse(0) + 1; // Пример автоматического ID
+            message.id = messageRepository.findAll().stream().mapToInt(msg -> msg.id).max().orElse(0) + 1;
             messageRepository.save(message);
-            person.get().messages.add(message); // Add the message to the person's message list.
+            person.get().messages.add(message);
             return personRepository.save(person.get()).messages.get(person.get().messages.size()-1);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

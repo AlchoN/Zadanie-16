@@ -1,9 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.dto.Message;
-import com.example.demo.dto.Person;
 import com.example.demo.Repository.MessageRepository;
-import com.example.demo.Service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
-
-
-
-
 
 @RestController
 public class MessageController {
@@ -42,7 +36,6 @@ public class MessageController {
     public Message updateMessage(@PathVariable int id, @RequestBody Message message) {
         Optional<Message> existingMessage = messageRepository.findById(id);
         if (existingMessage.isPresent()) {
-            // ... Update logic ...
             return messageRepository.save(message);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
